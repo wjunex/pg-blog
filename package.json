@@ -10,7 +10,10 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",
+    "axios": "^1.2.1",
     "element-plus": "^2.2.27",
+    "highlight.js": "^11.7.0",
+    "marked": "^4.2.4",
     "pinia": "^2.0.28",
     "sass": "^1.57.0",
     "vue": "^3.2.45",

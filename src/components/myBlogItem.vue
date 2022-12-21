@@ -6,7 +6,7 @@
       <div class=" user-select">August 06, 2015</div>
     </div>
     <div class=" text-title line-2 margin-tb-xs">Fusce vulputate eleifend sapien purus quam</div>
-    <div class="line-4">Etiam imperdiet imperdiet orci. Nunc nec neque. Phasellus leo dolor, tempus non, auctor et,
+    <div class="line-4" style="height: 100px;">Etiam imperdiet imperdiet orci. Nunc nec neque. Phasellus leo dolor, tempus non, auctor et,
       hendrerit quis,
       nisi. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo.</div>
     <div @click="gotodetails" class="more user-select flex align-center justify-center margin-tb-sm">
@@ -14,6 +14,7 @@
       <Right style="width: 1em; height: 1em; transform: translateY(2px);" />
     </div>
   </div>
+
 </template>
 
 <script setup>
@@ -31,7 +32,7 @@ function gotodetails() {
 .box {
   width: 300px;
   min-height: 500px;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
 
   .image {
     width: 100%;
