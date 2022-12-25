@@ -1,36 +1,60 @@
 <template>
-  <div class="flex ">
+  <div class="flex" v-if="total > 0">
     <div class="box" v-show="n > 1"  @click="back">
     <Back  style="width: 1em; height: 1em;"/>
     </div>
     <div class="box" v-for="item in pageArr" @click="changeAdd(item)" :key="item">{{ item }}</div>
-    <div class="box" @click="next" v-show=" n <= total - 4">
+    <div class="box" @click="next" v-show="pageArr[pageArr.length-1] !== PageTotal">
       <Right style="width: 1em; height: 1em; "  />
-
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import {ref, computed} from 'vue';
+
+const emit =  defineEmits(['change'])
+const props = defineProps({
+  total:{
+    type:Number,
+    default:() => {
+      return 0
+    }
+  },
+  pageSize:{
+    type:Number,
+    default:() => {
+      return 6
+    }
+  }
+})
+
 let n = ref(1)
+let PageTotal = computed(() => {
+  return Math.ceil(props.total/ props.pageSize )
+})
+
+
+
+
 let pageArr = computed(() => {
-  let arr = [n.value, n.value + 1 > total.value ? 0 : n.value + 1, n.value + 2 > total.value ? 0 : n.value + 2, n.value + 3 > total.value ? 0 : n.value + 3];
+  let arr = [n.value, n.value + 1 > PageTotal.value ? 0 : n.value + 1, n.value + 2 > PageTotal.value ? 0 : n.value + 2, n.value + 3 > PageTotal.value ? 0 : n.value + 3];
   return arr.filter(item => item > 0)
 })
 
 let currentPage = ref(1)
-let total = ref(16)
 
 
 function changeAdd(val) {
   if (currentPage.value === val) return;
   currentPage.value = val
-  console.log(currentPage.value);
+  emit('change',val)
+  window.scrollTo(0, 0)
+
 
 }
 function next() {
-  if (n.value + 4 > total.value) return
+  if (n.value + 4 > PageTotal.value) return
   n.value = n.value + 4
 }
 function back() {
