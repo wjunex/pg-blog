@@ -4,15 +4,25 @@ export function getBlogList(params) {
     return request({
         method:'get',
         url: '/api/blog/getBlogList',
-        data:params
+        params
     })
 }
-
 
 export function getCategoryList(params) {
     return request({
         method:'get',
         url: '/api/category/getCategoryList',
-        data:params
+        params
+    })
+}
+
+
+// post请求，
+export function xxx(data,params) {
+    return request({
+        method:'post',
+        url: 'xxx',
+        data,
+        params
     })
 }

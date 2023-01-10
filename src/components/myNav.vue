@@ -1,5 +1,9 @@
 <script setup>
 import { RouterLink } from 'vue-router'
+import {ref} from "vue";
+import { Sunny, Moon } from '@element-plus/icons-vue'
+
+const theme = ref(false)
 </script>
 
 <template>
@@ -11,6 +15,14 @@ import { RouterLink } from 'vue-router'
     <div>
       <RouterLink to="/">首页</RouterLink>
       <RouterLink to="/about">关于</RouterLink>
+      <el-switch
+          v-model="theme"
+          class="mt-2"
+          style="margin-left: 18px;--el-switch-on-color: #181A1B;"
+          inline-prompt
+          :active-icon="Moon"
+          :inactive-icon="Sunny"
+      />
     </div>
 
   </div>

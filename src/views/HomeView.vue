@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import {computed, ref} from 'vue';
 import myBlogItem from '../components/myBlogItem.vue';
 import myPagination from '@/components/myPagination.vue'
 import {getBlogList} from  '@/api/blog'
@@ -19,6 +19,12 @@ function getList(page) {
   })
 }
 getList(1)
+
+/*利用补齐元素的方式，让最后一行的元素左对齐*/
+let gapCount = computed(() => {
+  return  blogList.value.length % 3 === 0 ? 0 : 3 -(blogList.value.length % 3)
+})
+
 </script>
 
 <template>
@@ -26,6 +32,7 @@ getList(1)
   <myLayout>
     <div class="list">
       <myBlogItem :details="item" v-for="item in blogList" :key="item.id"></myBlogItem>
+      <div style=" width: 300px" v-for="(item,index) in gapCount" :key="index"></div>
     </div>
     <myPagination :total="total" @change="(e) => getList(e)"></myPagination>
 
@@ -37,6 +44,6 @@ getList(1)
 .list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 </style>

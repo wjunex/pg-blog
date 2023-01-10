@@ -1,5 +1,5 @@
 <template>
-  <div class="flex" v-if="total > 0">
+  <div class="flex" v-if="total > 6">
     <div class="box" v-show="n > 1"  @click="back">
     <Back  style="width: 1em; height: 1em;"/>
     </div>
